@@ -37,6 +37,7 @@ function App() {
         text: newText,
       });
       setTodos(todos.map(todo => (todo._id === id ? res.data : todo)));
+      alert('Todo Edited ✅');
     } catch (err) {
       console.error('Failed to update todo:', err);
     }
@@ -46,6 +47,7 @@ function App() {
     try {
       await axios.delete(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`);
       setTodos(todos.filter((todo) => todo._id !== id));
+      alert('Todo Deleted ✅');
     } catch (err) {
       console.error(err);
     }
