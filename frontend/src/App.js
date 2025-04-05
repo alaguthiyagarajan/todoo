@@ -8,7 +8,7 @@ import TodoForm from './Todoform';
 function App() {
   const [todos, setTodos]=useState([]);
   const fetchTodos=async ()=>{
-    const res = await axios.get('http://localhost:5000/api/todos');
+    const res = await axios.get('https://todoo-backend-dbm0.onrender.com/api/todos');
     setTodos(res.data);
   };
   useEffect(()=>{
@@ -16,18 +16,18 @@ function App() {
   },[]);
 
   const addTodo=async (text)=>{
-    const res = await axios.post('http://localhost:5000/api/todos',{text});
+    const res = await axios.post('https://todoo-backend-dbm0.onrender.com/api/todos',{text});
     setTodos([...todos, res.data]);
 
   }
 
   const toggleComplete=async (id, completed)=>{
-    const res=await axios.put(`http://localhost:5000/api/todos/${id}`, { completed: !completed });
+    const res=await axios.put(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`, { completed: !completed });
     setTodos(todos.map(todo => (todo._id === id ? res.data : todo)));
   };
   const updateTodo = async (id, newText) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/todos/${id}`, {
+      const res = await axios.put(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`, {
         text: newText,
       });
       setTodos(todos.map(todo => (todo._id === id ? res.data : todo)));
@@ -38,7 +38,7 @@ function App() {
   
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/todos/${id}`);
+      await axios.delete(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`);
       setTodos(todos.filter((todo) => todo._id !== id));
     } catch (err) {
       console.error(err);
