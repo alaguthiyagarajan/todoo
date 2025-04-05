@@ -4,6 +4,8 @@ const cors=require('cors');
 const todoRoutes=require('./routes/todo');
 const app= express();
 require('dotenv').config();
+
+const frontend=process.env.FRONTEND_URL
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
