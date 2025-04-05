@@ -15,11 +15,17 @@ function App() {
     fetchTodos();
   },[]);
 
-  const addTodo=async (text)=>{
-    const res = await axios.post('https://todoo-backend-dbm0.onrender.com/api/todos',{text});
+ const addTodo = async (text) => {
+  try {
+    const res = await axios.post('https://todoo-backend-dbm0.onrender.com/api/todos', { text });
     setTodos([...todos, res.data]);
-
+    alert('Todo added ✅');
+  } catch (error) {
+    console.error(error);
+    alert('Please wait a moment ❌');
   }
+};
+
 
   const toggleComplete=async (id, completed)=>{
     const res=await axios.put(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`, { completed: !completed });
