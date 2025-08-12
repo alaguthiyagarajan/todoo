@@ -4,7 +4,7 @@ function TodoForm({ addTodo }) {
   const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // ✅ Fixed typo
+    e.preventDefault();
     if (!text.trim()) return;
     addTodo(text);
     setText('');
