@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function TodoList({ todos, toggleComplete, deleteTodo, updateTodo }) {
+function TodoList({ todos, toggleComplete, markComplete, updateTodo }) {
   const [editId, setEditId] = useState(null);
   const [editText, setEditText] = useState('');
 
