@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios'
 import TodoList from './TodoList';
 import TodoForm from './Todoform';
-
+import History from './History';
 function App() {
 const [todos, setTodos] = useState([]);
 const [history, setHistory] = useState([]); 
@@ -62,6 +62,7 @@ const markComplete = async (id, completed) => {
     <div className="container">
       <h1>MERN ToDo APP</h1>
       <TodoForm addTodo={addTodo} />
+     <History history={history} />
      <TodoList
   todos={todos}
   toggleComplete={toggleComplete}
