@@ -37,7 +37,10 @@ function TodoList({ todos, toggleComplete, deleteTodo, updateTodo }) {
                 {todo.text}
               </span>
               <button onClick={() => handleEditClick(todo)}>Edit</button>
-              <button onClick={() => deleteTodo(todo._id)}>Delete</button>
+              <button onClick={() => markComplete(todo._id, todo.completed)}>
+  Complete
+</button>
+
             </>
           )}
         </li>
