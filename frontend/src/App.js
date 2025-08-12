@@ -19,10 +19,10 @@ function App() {
   try {
     const res = await axios.post('https://todoo-backend-dbm0.onrender.com/api/todos', { text });
     setTodos([...todos, res.data]);
-    alert('Todo added ✅');
+    alert('Todo added');
   } catch (error) {
     console.error(error);
-    alert('Please wait a moment ❌');
+    alert('Please wait a moment');
   }
 };
 
@@ -37,7 +37,7 @@ function App() {
         text: newText,
       });
       setTodos(todos.map(todo => (todo._id === id ? res.data : todo)));
-      alert('Todo Edited ✅');
+      alert('Edited');
     } catch (err) {
       console.error('Failed to update todo:', err);
     }
@@ -47,7 +47,7 @@ function App() {
     try {
       await axios.delete(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`);
       setTodos(todos.filter((todo) => todo._id !== id));
-      alert('Todo Deleted ✅');
+      alert('Deleted');
     } catch (err) {
       console.error(err);
     }
