@@ -6,7 +6,8 @@ import TodoList from './TodoList';
 import TodoForm from './Todoform';
 
 function App() {
-  const [todos, setTodos]=useState([]);
+const [todos, setTodos] = useState([]);
+const [history, setHistory] = useState([]); 
   const fetchTodos=async ()=>{
     const res = await axios.get('https://todoo-backend-dbm0.onrender.com/api/todos');
     setTodos(res.data);
@@ -43,27 +44,31 @@ function App() {
     }
   };
   
-  const deleteTodo = async (id) => {
-    try {
-      await axios.delete(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`);
-      setTodos(todos.filter((todo) => todo._id !== id));
-      alert('Deleted');
-    } catch (err) {
-      console.error(err);
-    }
-  };
+const markComplete = async (id, completed) => {
+  try {
+    const res = await axios.put(`https://todoo-backend-dbm0.onrender.com/api/todos/${id}`, {
+      completed: true,
+    });
+    setTodos(todos.filter((todo) => todo._id !== id));
+    setHistory([...history, res.data]);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
   
 
   return (
     <div className="container">
       <h1>MERN ToDo APP</h1>
       <TodoForm addTodo={addTodo} />
-      <TodoList
-        todos={todos}
-        toggleComplete={toggleComplete}
-        deleteTodo={deleteTodo}
-        updateTodo={updateTodo}
-      />
+     <TodoList
+  todos={todos}
+  toggleComplete={toggleComplete}
+  updateTodo={updateTodo}
+  markComplete={markComplete}
+/>
+
     </div>
   );
   
