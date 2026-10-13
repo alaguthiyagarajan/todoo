@@ -17,10 +17,14 @@ router.get('/', async (req, res) => {
 // Add a new todo
 router.post('/', async (req, res) => {
   try {
+    console.log('POST BODY:', req.body);
+
     const newTodo = new Todo(req.body);
     const saved = await newTodo.save();
-    res.json(saved);
+
+    res.status(201).json(saved);
   } catch (err) {
+    console.error('SAVE ERROR:', err);
     res.status(400).json({ message: err.message });
   }
 });
