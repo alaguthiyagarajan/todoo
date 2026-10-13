@@ -4,15 +4,16 @@ const Todo = require('../models/Todo');
 
 // Get all todos
 
-
 router.get('/', async (req, res) => {
   try {
     const todos = await Todo.find();
     res.json(todos);
   } catch (err) {
+    console.error('GET TODOS ERROR:', err);
     res.status(500).json({ message: err.message });
   }
 });
+
 
 // Add a new todo
 router.post('/', async (req, res) => {
